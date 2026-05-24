@@ -32,7 +32,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   margin-bottom: 16px;
+}
+
+.top-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .admin-actions {
@@ -134,11 +143,20 @@ button:hover {
 }
 
 .ghost-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   min-width: 92px;
+  min-height: 44px;
+  padding: 0 14px;
   border: 1px solid var(--line);
   background: #ffffff;
   color: var(--text);
+}
+
+.link-button {
+  text-decoration: none;
 }
 
 .ghost-button:hover {
@@ -343,6 +361,10 @@ tbody tr:hover {
   .shell {
     width: min(100% - 20px, 1120px);
     padding: 20px 0;
+  }
+
+  .topbar {
+    align-items: flex-start;
   }
 
   .search-panel {
