@@ -1,0 +1,14 @@
+{
+  "name": "choco-latte-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CSV participant list search service backed by JSON storage.",
+  "main": "server.js",
+  "scripts": {
+    "migrate:supabase": "node scripts/migrate-supabase.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

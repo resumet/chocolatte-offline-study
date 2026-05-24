@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>초코라떼 신청 검색</title>
+    <link rel="stylesheet" href="/styles.css?v=4">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">초코라떼 신청</div>
+        <button id="admin-open" class="ghost-button" type="button">관리자</button>
+      </header>
+
+      <section id="admin-view" class="admin-panel hidden" aria-labelledby="admin-title">
+        <div class="results-head">
+          <div>
+            <h2 id="admin-title">관리자 모드</h2>
+            <p id="admin-status">로그인이 필요합니다.</p>
+          </div>
+          <div class="admin-actions">
+            <button id="add-member-open" class="ghost-button hidden" type="button">회원추가</button>
+            <button id="admin-logout" class="ghost-button hidden" type="button">로그아웃</button>
+          </div>
+        </div>
+
+        <form id="admin-login-form" class="admin-login">
+          <label>
+            <span>아이디</span>
+            <input id="admin-username" name="username" autocomplete="username" value="admin">
+          </label>
+          <label>
+            <span>비밀번호</span>
+            <input id="admin-password" name="password" type="password" autocomplete="current-password">
+          </label>
+          <button type="submit">로그인</button>
+        </form>
+
+        <div id="admin-list" class="admin-list hidden">
+          <section class="summary-section" aria-label="참여날짜 요약">
+            <div class="summary-card">
+              <span>토요일</span>
+              <strong id="saturday-count">0명</strong>
+              <a class="download-link" href="/api/admin/export?date=saturday">엑셀 다운로드</a>
+            </div>
+            <div class="summary-card">
+              <span>일요일</span>
+              <strong id="sunday-count">0명</strong>
+              <a class="download-link" href="/api/admin/export?date=sunday">엑셀 다운로드</a>
+            </div>
+          </section>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>이름</th>
+                  <th>전화번호</th>
+                  <th>반</th>
+                  <th>참여날짜</th>
+                  <th>이메일</th>
+                  <th>저장</th>
+                </tr>
+              </thead>
+              <tbody id="admin-results"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div id="add-member-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="add-member-title">
+        <form id="add-member-form" class="modal">
+          <div class="modal-head">
+            <h2 id="add-member-title">회원추가</h2>
+            <button id="add-member-close" class="ghost-button icon-button" type="button" aria-label="닫기">X</button>
+          </div>
+          <div class="modal-grid">
+            <label>
+              <span>이름</span>
+              <input name="name" required>
+            </label>
+            <label>
+              <span>전화번호</span>
+              <input name="phone" inputmode="numeric" required>
+            </label>
+            <label>
+              <span>반</span>
+              <input name="className">
+            </label>
+            <label>
+              <span>참여날짜</span>
+              <select name="date" required>
+                <option value="30일(토)">30일(토)</option>
+                <option value="31일(일)">31일(일)</option>
+              </select>
+            </label>
+            <label class="wide-field">
+              <span>이메일</span>
+              <input name="email" type="email">
+            </label>
+          </div>
+          <p id="add-member-message" class="form-message"></p>
+          <div class="modal-actions">
+            <button class="ghost-button" type="button" id="add-member-cancel">취소</button>
+            <button type="submit">저장</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="search-view">
+        <section class="search-panel" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">초코라떼 신청 명단</p>
+            <h1 id="page-title">참여자 검색</h1>
+          </div>
+
+          <form id="search-form" class="search-form">
+            <label>
+              <span>이름</span>
+              <input id="name" name="name" type="search" autocomplete="name" placeholder="예: 김시연">
+            </label>
+            <label>
+              <span>전화번호</span>
+              <input id="phone" name="phone" type="search" inputmode="numeric" placeholder="예: 0616">
+            </label>
+            <button type="submit">검색</button>
+          </form>
+        </section>
+
+        <section class="results-area" aria-live="polite">
+          <div class="results-head">
+            <h2>검색 결과</h2>
+            <p id="summary">이름이나 전화번호를 입력해 주세요.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>이름</th>
+                  <th>전화번호</th>
+                  <th>반</th>
+                  <th>참여날짜</th>
+                  <th>이메일</th>
+                </tr>
+              </thead>
+              <tbody id="results">
+                <tr>
+                  <td colspan="5" class="empty">검색어를 입력하면 결과가 표시됩니다.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+    </main>
+
+    <script src="/app.js?v=6" defer></script>
+  </body>
+</html>
